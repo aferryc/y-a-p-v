@@ -1,0 +1,6 @@
+.zoomimg:hover
+{
+  transform: scale(1.2)
+  margin: -1% 0% 0% -1%
+  cursor: pointer
+}

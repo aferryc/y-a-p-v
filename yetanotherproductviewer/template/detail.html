@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+            <div class="tm-main-content no-pad-b">
+
+                <section class="row tm-item-preview">
+                    <div class="col-md-6 col-sm-12 mb-md-0 mb-5">
+                        <img src="{{object.main_image}}" alt="Image" class="img-fluid tm-img-center-sm">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <h2 class="tm-blue-text tm-margin-b-p" href="{{object.url}}">{{object.name}}</h2>
+                        {% for description in object.descriptions %}
+                        <p class="tm-margin-b-p">{{ description |safe}} </p>
+                        {% endfor %}
+                        <p class="tm-blue-text tm-margin-b-s">Price: {{object.price}}</p>
+                    </div>
+                </section>
+
+                <div class="tm-gallery no-pad-b">
+                    <div class="row">
+                        {% for image in object.image_arr %}
+                        <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item mb-5">
+                                <div class="tm-gallery-item-overlay">
+                                  <a href="{{image}}">
+                                    <img src="{{image}}" alt="Image" class="img-fluid tm-img-center zoomimg">
+                                  </a>
+                                </div>
+                        </figure>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+            </div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+                    <div class="tm-gallery">
+                        <div class="row">
+														{% for product in product_list %}
+                            <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                                <a href="{% url 'product-detail' product.id %}">
+                                  <div class="image-hover-text-container">
+                                    <div class="image-hover-image">
+                                      <img class="img-fluid tm-img-center" src="{{product.main_image}}">
+                                    </div>
+                                    <div class="image-hover-text">
+                                      <div class="image-hover-text-bubble">
+                                        <span class="image-hover-text-title">{{product.name}}</span>
+                                        {{product.descriptions.0 |safe}}
+                                        {{product.price |safe}}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </a>
+                            </figure>
+														{% endfor %}
+                        </div>
+                    </div>
+                    {% if is_paginated %}
+                    <nav class="tm-gallery-nav">
+                        <ul class="nav justify-content-center">
+                            {% if page_obj.has_previous %}
+                            <li class="nav-item"><a class="nav-link" href="/products?page={{ page_obj.previous_page_number }}">Prev</a></li>
+                            {% endif %}
+                            <li class="nav-item"><a class="nav-link active">{{ page_obj.number }}</a></li>
+                            {% if page_obj.has_next %}
+                            <li class="nav-item"><a class="nav-link" href="/products?page={{ page_obj.next_page_number }}">Next</a></li>
+                            {% endif}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% endif %}
+                </section>
+{% endblock %}
