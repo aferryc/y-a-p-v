@@ -11,15 +11,15 @@ class Product(models.Model):
 
     @property
     def image_arr(self):
-        return self.image_list[1:-1].replace("'","").split(", ")
+        return self.image_list[1:-1].replace("'", "").split(", ")
 
     @property
     def descriptions(self):
-        description = self.description.replace("[","").replace("]","")
-        if '\r\n' in description:
-            return description.split('\r\n')
-        elif '\n' in description:
-            return description.split('\n')
+        description = self.description.replace("[", "").replace("]", "")
+        if "\r\n" in description:
+            return description.split("\r\n")
+        elif "\n" in description:
+            return description.split("\n")
         else:
             return description
 
