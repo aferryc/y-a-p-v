@@ -8,6 +8,8 @@ class Product(models.Model):
     price = models.CharField(max_length=100)
     image_list = models.TextField()
     main_image = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     @property
     def image_arr(self):
