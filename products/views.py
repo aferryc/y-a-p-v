@@ -33,5 +33,4 @@ class Add(TemplateView):
         product_url = request.POST["product_url"]
         print(product_url)
         crawl_data.now(product_url)
-        crawl_data(product_url, repeat=3600)
         return HttpResponseRedirect("/products")

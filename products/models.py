@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(db_index=True, max_length=200)
     description = models.TextField()
     url = models.URLField(max_length=300)
     price = models.CharField(max_length=100)
@@ -23,7 +23,7 @@ class Product(models.Model):
         elif "\n" in description:
             return description.split("\n")
         else:
-            return description
+            return [description]
 
 
 # Create your models here.

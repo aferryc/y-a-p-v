@@ -48,15 +48,24 @@ def crawl_data(url):
                 if "images" in result and result["images"]["main_image"] != ""
                 else main_image
             )
-
-    product = Product(
-        name=name,
-        description=description,
-        url=url,
-        price=price,
-        image_list=image_list,
-        main_image=main_image,
-    )
+    product = None
+    if Product.objects.filter(name=name).exists():
+        product = Product.objects.get(name=name)
+        product.description = description
+        product.url = url
+        product.price = price
+        product.image_list = image_list
+        product.main_image = main_image
+    else:
+        product = Product(
+            name=name,
+            description=description,
+            url=url,
+            price=price,
+            image_list=image_list,
+            main_image=main_image,
+        )
+        crawl_data(url, repeat=3600)
     product.save()
 
 
